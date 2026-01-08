@@ -7,3 +7,19 @@ Ceil::Ceil(const QColor &color, const QPoint&p, QWidget *parent) : QPushButton(p
     this->move(p);
     this->show();
 }
+
+bool Ceil::isOccupied()
+{
+    return isOccupied_;
+}
+
+void Ceil::SetOccupied()
+{
+    isOccupied_ = true;
+}
+
+void Ceil::ClearOccupied()
+{
+    isOccupied_ = false;
+}
+

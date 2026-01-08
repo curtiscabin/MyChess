@@ -4,17 +4,23 @@
 #include <QWidget>
 #include "chess.h"
 #include "ceil.h"
+#include "pawn.h"
+#include"QLabel"
 
 class Board : public QWidget
 {
     Q_OBJECT
 
-    QVector<Chess*> chess;
+    QVector<Chess*> white_chess, black_chess;
     QVector<QVector<Ceil*>> ceils;
 
-    QColor getColor(const int&i, const int&j);
+    QColor getColorForCeil(const int&i, const int&j);
 
     QPoint getPointForCeil(const int&i, const int&j);
+
+    void CreateChess(const int&i, const int&j, QWidget*parent);
+
+    bool isNecessarySetChess(const int&i);
 public:
     explicit Board(QWidget *parent = nullptr);
 

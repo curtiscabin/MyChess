@@ -1,6 +1,10 @@
 #include "board.h"
 
-QColor Board::getColor(const int &i, const int &j)
+Board::Board(QWidget *parent)
+    : QWidget{parent}
+{}
+
+QColor Board::getColorForCeil(const int &i, const int &j)
 {
     if((i+j)%2 == 0)return "#D38753";
     else return "#221411";
@@ -8,23 +12,70 @@ QColor Board::getColor(const int &i, const int &j)
 
 QPoint Board::getPointForCeil(const int &i, const int &j)
 {
-    int x = i * 50;
-    int y = j * 50;
+    int x = j * 50;
+    int y = i * 50;
 
     return QPoint(x,y);
 }
 
-Board::Board(QWidget *parent)
-    : QWidget{parent}
-{}
+void Board::CreateChess(const int &i, const int &j, QWidget *parent)
+{
+    Chess* chess = nullptr;
+
+    QColor color;
+
+    if(i<=1){
+        color = "#77716A";
+
+        if(i == 1) chess = new Pawn(parent, color);
+
+        //other black figure;
+
+        black_chess.push_back(chess);
+
+        // QString test = QString::number(i) + " " + QString::number(j);
+        // QLabel* label = new QLabel(test, parent);
+        // label->move(25,25);
+    }
+    else if(i>=6){
+        color = "#ffffff";
+
+        if(i == 6) chess = new Pawn(parent, color);
+
+        //other white figure
+
+        white_chess.push_back(chess);
+
+        // QString test = QString::number(i) + " " + QString::number(j);
+        // QLabel* label = new QLabel(test, parent);
+        // label->move(25,25);
+    }
+}
+
+bool Board::isNecessarySetChess(const int &i)
+{
+    if (i<=1 || i >= 6) return true;
+    return false;
+}
 
 void Board::filling_ceils()
 {
     for(int i = 0 ;i<8;i++){
         ceils.push_back(QVector<Ceil*>());
         for(int j = 0; j<8;j++){
-            Ceil* ceil = new Ceil(getColor(i,j), getPointForCeil(i,j),this);
+            Ceil* ceil = new Ceil(getColorForCeil(i,j), getPointForCeil(i,j),this);
             ceils.back().push_back(ceil);
+
+            if(isNecessarySetChess(i)){
+                qDebug()<<i<<j;
+                ceil->SetOccupied();
+                CreateChess(i,j,ceil);
+
+            }
+
+            // QString test = QString::number(i) + " " + QString::number(j);
+            // QLabel* label = new QLabel(test, ceil);
+            // label->move(25,25);
         }
     }
 }

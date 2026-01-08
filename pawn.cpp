@@ -4,10 +4,30 @@ Pawn::Pawn(QWidget*parent, QColor color) : Chess(parent, color){}
 
 bool Pawn::move_chess(Ceil *a, Ceil *b)
 {
+    if((b->getRow() - a->getRow() > 2 || b->getRow() - a->getRow() < 0 && color == "#77716A") || (a->getRow() - b->getRow() > 2 || a->getRow() - b->getRow() < 0 && color == "#ffffff") || abs(b->getCol() - a->getCol()) > 1)return false;
+
+    //cut maybe
+    if(abs(b->getCol() - a->getCol()) == 1 && (b->getRow() - a->getRow() == 1 && color == "#77716A" || b->getRow() - a->getRow() == -1 && color == "#ffffff")){
+        if(!b->isOccupiedByChess())return false;
+
+        b->getChess()->hide();
+        b->deleteChess();
+        setParent(b);
+    }
+    //step forward
+    else if(abs(b->getRow() - a->getRow()) == 1 || (abs(b->getRow() - a->getRow()) == 2 && firstStep)){
+        if(b->isOccupiedByChess())return false;
+
+        setParent(b);
+    }
 
 
-
+    if(firstStep)firstStep = false;
+    raise();
+    show();
+    return true;
 }
+
 void Pawn::paintEvent(QPaintEvent* event)
 {
     Q_UNUSED(event);

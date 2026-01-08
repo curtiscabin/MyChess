@@ -28,5 +28,24 @@ void Ceil::clearChess()
     currentChess = nullptr;
 }
 
+int Ceil::getRow()
+{
+    return y() / 50;
+}
+
+int Ceil::getCol()
+{
+    return x() / 50;
+}
+
+void Ceil::deleteChess()
+{
+    if(!isOccupiedByChess())return;
+
+    delete getChess();
+    clearChess();
+    update();
+}
+
 
 

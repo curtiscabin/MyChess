@@ -7,3 +7,5 @@ Chess::Chess(QWidget *parent, QColor color)
     move(0,0);
     show();
 }
+
+

@@ -41,12 +41,6 @@ bool Board::isNecessarySetChess(const int &i)
     return false;
 }
 
-void Board::handleCeilClick(int i, int j)
-{
-    Ceil*ceil = ceils[i][j];
-    qDebug()<<i<<j;
-}
-
 void Board::filling_ceils()
 {
     for(int i = 0 ;i<8;i++){
@@ -69,5 +63,28 @@ void Board::filling_ceils()
             // QLabel* label = new QLabel(test, ceil);
             // label->move(25,25);
         }
+    }
+}
+
+void Board::handleCeilClick(int i, int j)
+{
+    Ceil*ceil = ceils[i][j];
+    qDebug()<<i<<j;
+
+    if(!ceil->isOccupiedByChess() && !firstClick)return;
+
+    if(!firstClick){
+        firstClick = ceil;
+        return;
+    }
+    else{
+        qDebug()<<"enter to go to move_chess";
+        if(firstClick->getChess()->move_chess(firstClick, ceil)){
+            qDebug()<<"successful move";
+            ceil->setChess(firstClick->getChess());
+            firstClick->clearChess();
+        }
+
+        firstClick = nullptr;
     }
 }

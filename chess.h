@@ -16,7 +16,6 @@ public:
     virtual bool move_chess(Ceil *a, Ceil *b) = 0;
 
 
-
 signals:
 };
 

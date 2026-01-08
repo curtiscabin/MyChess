@@ -6,6 +6,8 @@
 class Pawn : public Chess
 {
     Q_OBJECT
+
+    bool firstStep = true;
 public:
     Pawn(QWidget*parent, QColor color);
 

@@ -13,6 +13,7 @@ class Board : public QWidget
 
     QVector<Chess*> white_chess, black_chess;
     QVector<QVector<Ceil*>> ceils;
+    Ceil*firstClick = nullptr;
 
     QColor getColorForCeil(const int&i, const int&j);
 

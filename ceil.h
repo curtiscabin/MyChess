@@ -22,6 +22,12 @@ public:
     void setChess(Chess* chess);
 
     void clearChess();
+
+    int getRow();
+
+    int getCol();
+
+    void deleteChess();
 };
 
 #endif // CEIL_H

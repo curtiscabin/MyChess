@@ -18,44 +18,33 @@ QPoint Board::getPointForCeil(const int &i, const int &j)
     return QPoint(x,y);
 }
 
-void Board::CreateChess(const int &i, const int &j, QWidget *parent)
+void Board::CreateChess(const int &i, const int &j, Ceil *ceil)
 {
     Chess* chess = nullptr;
+    QColor color = (i <= 1) ? QColor("#77716A") : QColor("#ffffff");
 
-    QColor color;
-
-    if(i<=1){
-        color = "#77716A";
-
-        if(i == 1) chess = new Pawn(parent, color);
-
-        //other black figure;
-
-        black_chess.push_back(chess);
-
-        // QString test = QString::number(i) + " " + QString::number(j);
-        // QLabel* label = new QLabel(test, parent);
-        // label->move(25,25);
+    if (i == 1 || i == 6) {
+        chess = new Pawn(ceil, color);
     }
-    else if(i>=6){
-        color = "#ffffff";
-
-        if(i == 6) chess = new Pawn(parent, color);
-
-        //other white figure
-
-        white_chess.push_back(chess);
-
-        // QString test = QString::number(i) + " " + QString::number(j);
-        // QLabel* label = new QLabel(test, parent);
-        // label->move(25,25);
+    else if(j == 0 || j == 7){
+        //rook
     }
+
+    ceil->setChess(chess);
+    if(color == "#77716A")black_chess.push_back(chess);
+    else white_chess.push_back(chess);
 }
 
 bool Board::isNecessarySetChess(const int &i)
 {
     if (i<=1 || i >= 6) return true;
     return false;
+}
+
+void Board::handleCeilClick(int i, int j)
+{
+    Ceil*ceil = ceils[i][j];
+    qDebug()<<i<<j;
 }
 
 void Board::filling_ceils()
@@ -66,9 +55,12 @@ void Board::filling_ceils()
             Ceil* ceil = new Ceil(getColorForCeil(i,j), getPointForCeil(i,j),this);
             ceils.back().push_back(ceil);
 
+            connect(ceil, &Ceil::clicked, this, [this, i, j]() {
+                handleCeilClick(i, j);
+            });
+
             if(isNecessarySetChess(i)){
                 qDebug()<<i<<j;
-                ceil->SetOccupied();
                 CreateChess(i,j,ceil);
 
             }

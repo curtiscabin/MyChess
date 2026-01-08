@@ -5,19 +5,23 @@
 #include <QColor>
 #include<QPainter>
 
+class Chess;
+
 class Ceil : public QPushButton
 {
     Q_OBJECT
 
-    bool isOccupied_ = false;
+    Chess* currentChess = nullptr;
 public:
     Ceil(const QColor &color,const QPoint& p,QWidget*parent);
 
-    bool isOccupied();
+    bool isOccupiedByChess();
 
-    void SetOccupied();
+    Chess* getChess();
 
-    void ClearOccupied();
+    void setChess(Chess* chess);
+
+    void clearChess();
 };
 
 #endif // CEIL_H

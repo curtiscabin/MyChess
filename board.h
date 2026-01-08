@@ -18,9 +18,11 @@ class Board : public QWidget
 
     QPoint getPointForCeil(const int&i, const int&j);
 
-    void CreateChess(const int&i, const int&j, QWidget*parent);
+    void CreateChess(const int&i, const int&j, Ceil*ceil);
 
     bool isNecessarySetChess(const int&i);
+
+    void handleCeilClick(int i, int j);
 public:
     explicit Board(QWidget *parent = nullptr);
 

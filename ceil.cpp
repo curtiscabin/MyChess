@@ -8,18 +8,25 @@ Ceil::Ceil(const QColor &color, const QPoint&p, QWidget *parent) : QPushButton(p
     this->show();
 }
 
-bool Ceil::isOccupied()
+bool Ceil::isOccupiedByChess()
 {
-    return isOccupied_;
+    return currentChess;
 }
 
-void Ceil::SetOccupied()
+Chess *Ceil::getChess()
 {
-    isOccupied_ = true;
+    return currentChess;
 }
 
-void Ceil::ClearOccupied()
+void Ceil::setChess(Chess* chess)
 {
-    isOccupied_ = false;
+    currentChess = chess;
 }
+
+void Ceil::clearChess()
+{
+    currentChess = nullptr;
+}
+
+
 

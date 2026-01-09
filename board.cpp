@@ -7,7 +7,7 @@ Board::Board(QWidget *parent)
 QColor Board::getColorForCeil(const int &i, const int &j)
 {
     if((i+j)%2 == 0)return "#D38753";
-    else return "#221411";
+    else return "#7B344C";
 }
 
 QPoint Board::getPointForCeil(const int &i, const int &j)
@@ -27,7 +27,19 @@ void Board::CreateChess(const int &i, const int &j, Ceil *ceil)
         chess = new Pawn(ceil, color);
     }
     else if(j == 0 || j == 7){
-        //rook
+        chess = new Rook(ceil, color);
+    }
+    else if(j == 1 || j == 6){
+        chess = new Knight(ceil, color);
+    }
+    else if(j == 2 || j == 5){
+        chess = new Bishop(ceil, color);
+    }
+    else if(j == 3){
+        chess = new Queen(ceil, color);
+    }
+    else if(j == 4){
+        chess = new King(ceil, color);
     }
 
     ceil->setChess(chess);

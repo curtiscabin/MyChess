@@ -2,10 +2,15 @@
 #define BOARD_H
 
 #include <QWidget>
+#include"QLabel"
 #include "chess.h"
 #include "ceil.h"
 #include "pawn.h"
-#include"QLabel"
+#include "rook.h"
+#include "bishop.h"
+#include "king.h"
+#include "knight.h"
+#include "queen.h"
 
 class Board : public QWidget
 {

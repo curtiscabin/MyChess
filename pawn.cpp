@@ -20,6 +20,7 @@ bool Pawn::move_chess(Ceil *a, Ceil *b)
 
         setParent(b);
     }
+    else return false;
 
 
     if(firstStep)firstStep = false;

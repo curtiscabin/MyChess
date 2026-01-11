@@ -78,6 +78,27 @@ void Board::filling_ceils()
     }
 }
 
+bool Board::onBoardIsWayFromToClear(Ceil *a, Ceil *b)
+{
+    //bishop
+    if(b->getRow() - a->getRow() == b->getCol() - a->getCol()){
+
+    }
+    //rook
+    else{
+        if(a->distTo(b) == 1){
+            return true;
+        }
+        Ceil* neighbour = getNeighbourTo(a,b);
+        if(neighbour->getChess()){
+            return false;
+        }
+        else{
+            return (neighbour, b);
+        }
+    }
+}
+
 void Board::handleCeilClick(int i, int j)
 {
     Ceil*ceil = ceils[i][j];
@@ -99,4 +120,16 @@ void Board::handleCeilClick(int i, int j)
 
         firstClick = nullptr;
     }
+}
+
+Ceil *Board::getNeighbourTo(Ceil *a, Ceil *b)
+{
+    QVector<int>vec_to_b;
+    vec_to_b.push_back(b->getRow() - a->getRow());
+    vec_to_b.push_back(b->getCol() - a->getCol());
+
+    if(vec_to_b[0] != 0)vec_to_b[0]/=vec_to_b[0];
+    if(vec_to_b[1] != 0)vec_to_b[1]/=vec_to_b[1];
+
+    return ceils[a->getRow() + vec_to_b[0]][a->getCol() + vec_to_b[1]];
 }

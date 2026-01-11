@@ -7,6 +7,13 @@
 
 class Chess;
 
+class Ceil;
+
+class Board {
+public:
+    bool onBoardIsWayFromToClear(Ceil* a, Ceil* b);
+};
+
 class Ceil : public QPushButton
 {
     Q_OBJECT
@@ -14,8 +21,6 @@ class Ceil : public QPushButton
     Chess* currentChess = nullptr;
 public:
     Ceil(const QColor &color,const QPoint& p,QWidget*parent);
-
-    bool isOccupiedByChess();
 
     Chess* getChess();
 
@@ -28,6 +33,10 @@ public:
     int getCol();
 
     void deleteChess();
+
+    bool isWayFromToClear(Ceil *b);
+
+    int distTo(Ceil*b);
 };
 
 #endif // CEIL_H

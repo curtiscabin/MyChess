@@ -8,11 +8,6 @@ Ceil::Ceil(const QColor &color, const QPoint&p, QWidget *parent) : QPushButton(p
     this->show();
 }
 
-bool Ceil::isOccupiedByChess()
-{
-    return currentChess;
-}
-
 Chess *Ceil::getChess()
 {
     return currentChess;
@@ -40,11 +35,31 @@ int Ceil::getCol()
 
 void Ceil::deleteChess()
 {
-    if(!isOccupiedByChess())return;
+    if(!getChess())return;
 
     delete getChess();
     clearChess();
     update();
+}
+
+bool Ceil::isWayFromToClear(Ceil *b)
+{
+    return dynamic_cast<Board*>(parentWidget())->onBoardIsWayFromToClear(this, b);
+}
+
+int Ceil::distTo(Ceil *b)
+{
+    //bishop
+    if(b->getRow() - getRow() == b->getCol() - getCol()){
+        return abs(b->getRow() - getRow());
+    }
+    //rook
+    else{
+        if(b->getRow() - getRow() == 0){
+            return abs(b->getCol() - getCol());
+        }
+        else return abs(b->getRow() - getRow());
+    }
 }
 
 

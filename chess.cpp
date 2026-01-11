@@ -8,4 +8,11 @@ Chess::Chess(QWidget *parent, QColor color)
     show();
 }
 
+void Chess::cut_chess(Ceil *b)
+{
+    b->getChess()->hide();
+    b->deleteChess();
+    setParent(b);
+}
+
 

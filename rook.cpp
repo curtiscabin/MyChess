@@ -4,7 +4,20 @@ Rook::Rook(QWidget*parent, QColor color) : Chess(parent, color){}
 
 bool Rook::move_chess(Ceil *a, Ceil *b)
 {
+    if((b->getRow() - a->getRow())*(b->getCol() - a->getCol())!=0)return false;
 
+    //horizontal
+    if(!a->isWayFromToClear(b))return false;
+    if(b->getChess()){
+        cut_chess(b);
+    }
+    else{
+        setParent(b);
+    }
+
+    raise();
+    show();
+    return true;
 }
 
 void Rook::paintEvent(QPaintEvent* event)

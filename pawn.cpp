@@ -8,15 +8,13 @@ bool Pawn::move_chess(Ceil *a, Ceil *b)
 
     //cut maybe
     if(abs(b->getCol() - a->getCol()) == 1 && (b->getRow() - a->getRow() == 1 && color == "#77716A" || b->getRow() - a->getRow() == -1 && color == "#ffffff")){
-        if(!b->isOccupiedByChess())return false;
+        if(!b->getChess())return false;
 
-        b->getChess()->hide();
-        b->deleteChess();
-        setParent(b);
+        cut_chess(b);
     }
     //step forward
     else if(abs(b->getRow() - a->getRow()) == 1 || (abs(b->getRow() - a->getRow()) == 2 && firstStep)){
-        if(b->isOccupiedByChess())return false;
+        if(b->getChess())return false;
 
         setParent(b);
     }
@@ -24,6 +22,7 @@ bool Pawn::move_chess(Ceil *a, Ceil *b)
 
 
     if(firstStep)firstStep = false;
+
     raise();
     show();
     return true;

@@ -15,6 +15,7 @@ public:
 
     virtual bool move_chess(Ceil *a, Ceil *b) = 0;
 
+    void cut_chess(Ceil* b);
 
 signals:
 };

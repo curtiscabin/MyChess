@@ -30,13 +30,12 @@ class Board : public QWidget
 
     void handleCeilClick(int i, int j);
 
-    Ceil* getNeighbourTo(Ceil*a, Ceil*b);
 public:
     explicit Board(QWidget *parent = nullptr);
 
     void filling_ceils();
 
-    bool onBoardIsWayFromToClear(Ceil *a, Ceil* b);
+    Ceil* getNeighbourTo(Ceil*a, Ceil*b);
 
 signals:
 };

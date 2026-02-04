@@ -9,11 +9,6 @@ class Chess;
 
 class Ceil;
 
-class Board {
-public:
-    bool onBoardIsWayFromToClear(Ceil* a, Ceil* b);
-};
-
 class Ceil : public QPushButton
 {
     Q_OBJECT
@@ -34,9 +29,9 @@ public:
 
     void deleteChess();
 
-    bool isWayFromToClear(Ceil *b);
-
     int distTo(Ceil*b);
+
+    bool isOccupiedByChess();
 };
 
 #endif // CEIL_H

@@ -3,7 +3,8 @@
 
 #include <QWidget>
 #include <QPainterPath>
-#include"ceil.h"
+#include "ceil.h"
+#include "waychecker.h"
 
 class Chess : public QWidget
 {

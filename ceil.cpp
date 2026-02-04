@@ -42,10 +42,6 @@ void Ceil::deleteChess()
     update();
 }
 
-bool Ceil::isWayFromToClear(Ceil *b)
-{
-    return dynamic_cast<Board*>(parentWidget())->onBoardIsWayFromToClear(this, b);
-}
 
 int Ceil::distTo(Ceil *b)
 {
@@ -62,5 +58,9 @@ int Ceil::distTo(Ceil *b)
     }
 }
 
+bool Ceil::isOccupiedByChess()
+{
+    return currentChess;
+}
 
 

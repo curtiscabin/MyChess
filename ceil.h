@@ -32,6 +32,10 @@ public:
     int distTo(Ceil*b);
 
     bool isOccupiedByChess();
+
+    int distToByRow(Ceil*b);
+
+    int distToByCol(Ceil*b);
 };
 
 #endif // CEIL_H

@@ -37,7 +37,7 @@ void Ceil::deleteChess()
 {
     if(!getChess())return;
 
-    delete getChess();
+    delete currentChess;
     clearChess();
     update();
 }
@@ -61,6 +61,16 @@ int Ceil::distTo(Ceil *b)
 bool Ceil::isOccupiedByChess()
 {
     return currentChess;
+}
+
+int Ceil::distToByRow(Ceil *b)
+{
+    return abs(b->getRow() - getRow());
+}
+
+int Ceil::distToByCol(Ceil *b)
+{
+    return abs(b->getCol() - getCol());
 }
 
 

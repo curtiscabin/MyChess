@@ -46,7 +46,7 @@ void Ceil::deleteChess()
 int Ceil::distTo(Ceil *b)
 {
     //bishop
-    if(b->getRow() - getRow() == b->getCol() - getCol()){
+    if(abs(b->getRow() - getRow()) == abs(b->getCol() - getCol())){
         return abs(b->getRow() - getRow());
     }
     //rook

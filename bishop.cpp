@@ -4,7 +4,25 @@ Bishop::Bishop(QWidget*parent, QColor color) : Chess(parent, color){}
 
 bool Bishop::move_chess(Ceil *a, Ceil *b)
 {
+    qDebug()<<"enter to go to move_chess";
+    if(!(abs(b->getRow() - a->getRow()) == abs(b->getCol() - a->getCol())) || a == b)return false;
+    qDebug()<<"after first check of bishop";
+    WayChecker wayCheck;
+    //horizontal
+    if(!wayCheck.onBoardIsWayFromToClear(a,b,a->parentWidget()))
+        return false;
+    qDebug()<<"after wayCheck of bishop";
+    if(b->getChess()){
+        cut_chess(b);
+    }
+    else{
+        setParent(b);
+    }
 
+    raise();
+    show();
+    qDebug()<<"over move_chess";
+    return true;
 }
 
 void Bishop::paintEvent(QPaintEvent* event)

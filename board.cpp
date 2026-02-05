@@ -71,9 +71,9 @@ void Board::filling_ceils()
 
             }
 
-            QString test = QString::number(i) + " " + QString::number(j);
-            QLabel* label = new QLabel(test, ceil);
-            label->move(25,25);
+            // QString test = QString::number(i) + " " + QString::number(j);
+            // QLabel* label = new QLabel(test, ceil);
+            // label->move(25,25);
         }
     }
 }

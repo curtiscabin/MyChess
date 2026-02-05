@@ -4,7 +4,28 @@ Queen::Queen(QWidget*parent, QColor color) : Chess(parent, color){}
 
 bool Queen::move_chess(Ceil *a, Ceil *b)
 {
+    if(a==b)return false;
 
+    if( (a->distToByRow(b) == a->distToByCol(b)) || (a->distToByCol(b) * a->distToByRow(b) == 0) )
+    {
+        qDebug()<<"after first check of queen";
+        WayChecker wayCheck;
+        if(!wayCheck.onBoardIsWayFromToClear(a,b,a->parentWidget()))
+            return false;
+        qDebug()<<"after wayCheck of queen";
+        if(b->getChess()){
+            cut_chess(b);
+        }
+        else{
+            setParent(b);
+        }
+
+        raise();
+        show();
+        qDebug()<<"over move_chess";
+        return true;
+    }
+    else return false;
 }
 
 void Queen::paintEvent(QPaintEvent* event)

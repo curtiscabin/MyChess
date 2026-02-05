@@ -14,7 +14,10 @@ bool Queen::move_chess(Ceil *a, Ceil *b)
             return false;
         qDebug()<<"after wayCheck of queen";
         if(b->getChess()){
-            cut_chess(b);
+            if(possibility_cutting(b))
+                cut_chess(b);
+            else
+                return false;
         }
         else{
             setParent(b);

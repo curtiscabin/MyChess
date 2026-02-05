@@ -4,25 +4,31 @@ Rook::Rook(QWidget*parent, QColor color) : Chess(parent, color){}
 
 bool Rook::move_chess(Ceil *a, Ceil *b)
 {
-    qDebug()<<"enter to go to move_chess";
-    if((b->getRow() - a->getRow())*(b->getCol() - a->getCol())!=0 || a == b )return false;
-    qDebug()<<"after first check of rook";
-    WayChecker wayCheck;
-    //horizontal
-    if(!wayCheck.onBoardIsWayFromToClear(a,b,a->parentWidget()))
-    return false;
-    qDebug()<<"after wayCheck of rook";
-    if(b->getChess()){
-        cut_chess(b);
-    }
-    else{
-        setParent(b);
-    }
+    if(a==b)return false;
 
-    raise();
-    show();
-    qDebug()<<"over move_chess";
-    return true;
+    if(a->distToByCol(b) * a->distToByRow(b) == 0)
+    {
+        qDebug()<<"after first check of rook";
+        WayChecker wayCheck;
+        if(!wayCheck.onBoardIsWayFromToClear(a,b,a->parentWidget()))
+            return false;
+        qDebug()<<"after wayCheck of rook";
+        if(b->getChess()){
+            if(possibility_cutting(b))
+                cut_chess(b);
+            else
+                return false;
+        }
+        else{
+            setParent(b);
+        }
+
+        raise();
+        show();
+        qDebug()<<"over move_chess";
+        return true;
+    }
+    else return false;
 }
 
 void Rook::paintEvent(QPaintEvent* event)

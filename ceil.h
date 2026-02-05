@@ -13,7 +13,7 @@ class Ceil : public QPushButton
 {
     Q_OBJECT
 
-    Chess* currentChess = nullptr;
+    Chess* currentChess;
 public:
     Ceil(const QColor &color,const QPoint& p,QWidget*parent);
 

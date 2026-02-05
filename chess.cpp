@@ -15,4 +15,16 @@ void Chess::cut_chess(Ceil *b)
     setParent(b);
 }
 
+bool Chess::possibility_cutting(Ceil *b)
+{
+    Chess* enemy = b->getChess();
+
+    return color!=enemy->getColor();
+}
+
+QColor Chess::getColor()
+{
+    return color;
+}
+
 

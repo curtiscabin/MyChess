@@ -10,9 +10,11 @@ bool Knight::move_chess(Ceil *a, Ceil *b)
     if( (a->distToByRow(b) == 2 && a->distToByCol(b) == 1) || (a->distToByRow(b) == 1 && a->distToByCol(b) == 2) )
     {
         qDebug()<<"after first check of knight";
-        if(b->getChess())
-        {
-            cut_chess(b);
+        if(b->getChess()){
+            if(possibility_cutting(b))
+                cut_chess(b);
+            else
+                return false;
         }
         else{
             setParent(b);

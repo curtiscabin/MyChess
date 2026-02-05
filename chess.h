@@ -18,6 +18,10 @@ public:
 
     void cut_chess(Ceil* b);
 
+    bool possibility_cutting(Ceil* b);
+
+    QColor getColor();
+
 signals:
 };
 

@@ -37,6 +37,8 @@ public:
 
     Ceil* getNeighbourTo(Ceil*a, Ceil*b);
 
+    QVector<QVector<Ceil*>> getVectorCeils();
+
 signals:
 };
 

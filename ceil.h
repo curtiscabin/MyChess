@@ -3,7 +3,7 @@
 
 #include <QPushButton>
 #include <QColor>
-#include<QPainter>
+#include <QPainter>
 
 class Chess;
 

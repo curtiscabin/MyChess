@@ -36,6 +36,7 @@ find_package(Qt6 REQUIRED COMPONENTS Widgets)
         queen.h queen.cpp
         king.h king.cpp
         waychecker.h waychecker.cpp
+        checkmatechecker.h checkmatechecker.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET MyChess APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

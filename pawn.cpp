@@ -8,11 +8,11 @@ bool Pawn::move_chess(Ceil *a, Ceil *b)
         ||
         (a->getRow() - b->getRow() > 2 || a->getRow() - b->getRow() < 0 && color == "#ffffff")
         ||
-        abs(b->getCol() - a->getCol()) > 1)
+        a->distToByCol(b) > 1)
         return false;
 
     //cut maybe
-    if(abs(b->getCol() - a->getCol()) == 1 && (b->getRow() - a->getRow() == 1 && color == "#77716A" || b->getRow() - a->getRow() == -1 && color == "#ffffff")){
+    if(a->distToByCol(b) == 1 && (b->getRow() - a->getRow() == 1 && color == "#77716A" || b->getRow() - a->getRow() == -1 && color == "#ffffff")){
         if(b->getChess() && possibility_cutting(b))
             cut_chess(b);
         else

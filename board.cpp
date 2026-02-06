@@ -114,3 +114,8 @@ Ceil *Board::getNeighbourTo(Ceil *a, Ceil *b)
     return ceils[a->getRow() + y][a->getCol() + x];
     qDebug()<<"???over???";
 }
+
+QVector<QVector<Ceil *> > Board::getVectorCeils()
+{
+    return ceils;
+}

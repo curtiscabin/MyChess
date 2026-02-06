@@ -1,5 +1,6 @@
 #include "waychecker.h"
 #include "board.h"
+#include "ceil.h"
 
 WayChecker::WayChecker() {}
 

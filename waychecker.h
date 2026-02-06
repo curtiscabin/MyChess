@@ -1,6 +1,8 @@
 #ifndef WAYCHECKER_H
 #define WAYCHECKER_H
-#include "ceil.h"
+
+class Ceil;
+class QWidget;
 
 class WayChecker
 {

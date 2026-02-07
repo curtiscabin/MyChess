@@ -49,3 +49,18 @@ bool Knight::pathway_rule(Ceil *a, Ceil *b)
 {
     return (a->distToByRow(b) == 2 && a->distToByCol(b) == 1) || (a->distToByRow(b) == 1 && a->distToByCol(b) == 2);
 }
+
+bool Knight::possibility_move(Ceil *a, Ceil *b)
+{
+    if(a==b)return false;
+
+    if(!pathway_rule(a,b)) return false;
+
+    Chess*maybe_chess = b->getChess();
+
+    if(maybe_chess && color==maybe_chess->getColor()){
+        return false;
+    }
+
+    return true;
+}

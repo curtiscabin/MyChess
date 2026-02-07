@@ -12,6 +12,8 @@ public:
     void paintEvent(QPaintEvent* event) override;
 
     bool pathway_rule(Ceil *a, Ceil *b) override;
+
+    bool possibility_move(Ceil *a, Ceil *b) override;
 };
 
 #endif // KNIGHT_H

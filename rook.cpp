@@ -2,36 +2,6 @@
 
 Rook::Rook(QWidget*parent, QColor color) : Chess(parent, color){}
 
-bool Rook::move_chess(Ceil *a, Ceil *b)
-{
-    if(a==b)return false;
-
-    if(a->distToByCol(b) * a->distToByRow(b) == 0)
-    {
-        qDebug()<<"after first check of rook";
-        WayChecker wayCheck;
-        if(!wayCheck.onBoardIsWayFromToClear(a,b,a->parentWidget()))
-            return false;
-        qDebug()<<"after wayCheck of rook";
-
-        if(b->getChess()){
-            if(possibility_cutting(a, b))
-                cut_chess(b);
-            else
-                return false;
-        }
-        else{
-            setParent(b);
-        }
-
-        raise();
-        show();
-        qDebug()<<"over move_chess";
-        return true;
-    }
-    else return false;
-}
-
 void Rook::paintEvent(QPaintEvent* event)
 {
     Q_UNUSED(event);
@@ -79,4 +49,10 @@ void Rook::paintEvent(QPaintEvent* event)
     painter.drawPath(body);
 
     painter.drawRect(-30, 35, 60, 10);
+}
+
+
+bool Rook::pathway_rule(Ceil *a, Ceil *b)
+{
+    return a->distToByCol(b) * a->distToByRow(b) == 0;
 }

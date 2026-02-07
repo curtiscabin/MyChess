@@ -2,35 +2,6 @@
 
 Queen::Queen(QWidget*parent, QColor color) : Chess(parent, color){}
 
-bool Queen::move_chess(Ceil *a, Ceil *b)
-{
-    if(a==b)return false;
-
-    if( (a->distToByRow(b) == a->distToByCol(b)) || (a->distToByCol(b) * a->distToByRow(b) == 0) )
-    {
-        qDebug()<<"after first check of queen";
-        WayChecker wayCheck;
-        if(!wayCheck.onBoardIsWayFromToClear(a,b,a->parentWidget()))
-            return false;
-        qDebug()<<"after wayCheck of queen";
-        if(b->getChess()){
-            if(possibility_cutting(a, b))
-                cut_chess(b);
-            else
-                return false;
-        }
-        else{
-            setParent(b);
-        }
-
-        raise();
-        show();
-        qDebug()<<"over move_chess";
-        return true;
-    }
-    else return false;
-}
-
 void Queen::paintEvent(QPaintEvent* event)
 {
     Q_UNUSED(event);
@@ -67,4 +38,9 @@ void Queen::paintEvent(QPaintEvent* event)
     // 5. ПОДСТАВКА
     painter.drawRect(16, 40, 18, 3);
     painter.drawRect(12, 43, 26, 3);
+}
+
+bool Queen::pathway_rule(Ceil *a, Ceil *b)
+{
+    return (a->distToByRow(b) == a->distToByCol(b)) || (a->distToByCol(b) * a->distToByRow(b) == 0);
 }

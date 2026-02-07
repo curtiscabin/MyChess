@@ -17,7 +17,9 @@ public:
 
     void paintEvent(QPaintEvent* event) override;
 
-    bool possibility_cutting(Ceil *a, Ceil *b) override;
+    bool possibility_cutting_for_pawn(Ceil *a, Ceil *b);
+
+    bool pathway_rule(Ceil *a, Ceil *b) override;
 };
 
 #endif // PAWN_H

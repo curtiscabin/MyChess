@@ -3,8 +3,8 @@
 
 #include <QWidget>
 #include <QPainterPath>
-#include "ceil.h"
 #include "waychecker.h"
+#include "ceil.h"
 
 class Chess : public QWidget
 {
@@ -14,15 +14,17 @@ protected:
 public:
     explicit Chess(QWidget *parent, QColor color);
 
-    virtual bool move_chess(Ceil *a, Ceil *b) = 0;
+    virtual bool move_chess(Ceil *a, Ceil *b);
 
     virtual bool possibility_move(Ceil *a, Ceil *b);
 
     void cut_chess(Ceil* b);
 
-    virtual bool possibility_cutting(Ceil *a, Ceil* b);
+    bool possibility_cutting(Ceil* b);
 
     QColor getColor();
+
+    virtual bool pathway_rule(Ceil*a, Ceil*b) = 0;
 
 signals:
 };

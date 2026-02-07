@@ -2,35 +2,6 @@
 
 Knight::Knight(QWidget*parent, QColor color) : Chess(parent, color){}
 
-bool Knight::move_chess(Ceil *a, Ceil *b)
-{
-    qDebug()<<"knight moves";
-    // qDebug()<<"distToByRow(a->b) : "<<a->distToByRow(b);
-    // qDebug()<<"distToByCol(a->b) : "<<a->distToByCol(b);
-    if( (a->distToByRow(b) == 2 && a->distToByCol(b) == 1) || (a->distToByRow(b) == 1 && a->distToByCol(b) == 2) )
-    {
-        qDebug()<<"after first check of knight";
-        if(b->getChess()){
-            if(possibility_cutting(a, b))
-                cut_chess(b);
-            else
-                return false;
-        }
-        else{
-            setParent(b);
-        }
-
-        raise();
-        show();
-        qDebug()<<"over move_chess";
-        return true;
-    }
-    else {
-        qDebug()<<"uncheck knight";
-        return false;
-    }
-}
-
 void Knight::paintEvent(QPaintEvent *event) {
     Q_UNUSED(event);
     QPainter painter(this);
@@ -72,4 +43,9 @@ void Knight::paintEvent(QPaintEvent *event) {
     body.closeSubpath();
 
     painter.drawPath(body);
+}
+
+bool Knight::pathway_rule(Ceil *a, Ceil *b)
+{
+    return (a->distToByRow(b) == 2 && a->distToByCol(b) == 1) || (a->distToByRow(b) == 1 && a->distToByCol(b) == 2);
 }

@@ -2,34 +2,6 @@
 
 Bishop::Bishop(QWidget*parent, QColor color) : Chess(parent, color){}
 
-bool Bishop::move_chess(Ceil *a, Ceil *b)
-{
-    if(a==b)return false;
-    if(a->distToByRow(b) == a->distToByCol(b))
-    {
-        qDebug()<<"after first check of bishop";
-        WayChecker wayCheck;
-        if(!wayCheck.onBoardIsWayFromToClear(a,b,a->parentWidget()))
-            return false;
-        qDebug()<<"after wayCheck of bishop";
-        if(b->getChess()){
-            if(possibility_cutting(a ,b))
-                cut_chess(b);
-            else
-                return false;
-        }
-        else{
-            setParent(b);
-        }
-
-        raise();
-        show();
-        qDebug()<<"over move_chess";
-        return true;
-    }
-    else return false;
-}
-
 void Bishop::paintEvent(QPaintEvent* event)
 {
     Q_UNUSED(event);
@@ -69,4 +41,9 @@ void Bishop::paintEvent(QPaintEvent* event)
 
     painter.drawRect(16, 40, 18, 3);
     painter.drawRect(12, 43, 26, 3);
+}
+
+bool Bishop::pathway_rule(Ceil *a, Ceil *b)
+{
+    return a->distToByRow(b) == a->distToByCol(b);
 }

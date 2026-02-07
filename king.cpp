@@ -3,30 +3,30 @@
 
 King::King(QWidget*parent, QColor color) : Chess(parent, color){}
 
-bool King::move_chess(Ceil *a, Ceil *b)
-{
-    qDebug()<<"king moves";
-    if(a->distToByCol(b) > 1 || a->distToByRow(b) > 1) return false;
+// bool King::move_chess(Ceil *a, Ceil *b)
+// {
+//     qDebug()<<"king moves";
+//     if(a->distToByCol(b) > 1 || a->distToByRow(b) > 1) return false;
 
-    CheckMateChecker CheckMateCheck;
+//     CheckMateChecker CheckMateCheck;
 
-    if(CheckMateCheck.CheckChecker(a, b, b->parentWidget())) return false;
-    qDebug()<<"after CheckMateChecker";
+//     if(CheckMateCheck.CheckChecker(a, b, b->parentWidget())) return false;
+//     qDebug()<<"after CheckMateChecker";
 
-    if(b->getChess()){
-        if(possibility_cutting(a, b))
-            cut_chess(b);
-        else
-            return false;
-    }
-    else{
-        setParent(b);
-    }
+//     if(b->getChess()){
+//         if(possibility_cutting(b))
+//             cut_chess(b);
+//         else
+//             return false;
+//     }
+//     else{
+//         setParent(b);
+//     }
 
-    raise();
-    show();
-    return true;
-}
+//     raise();
+//     show();
+//     return true;
+// }
 
 void King::paintEvent(QPaintEvent* event)
 {
@@ -66,4 +66,9 @@ void King::paintEvent(QPaintEvent* event)
 
     painter.drawRect(16, 40, 18, 3);
     painter.drawRect(12, 43, 26, 3);
+}
+
+bool King::pathway_rule(Ceil *a, Ceil *b)
+{
+    return a->distTo(b) == 1;
 }

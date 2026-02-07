@@ -9,9 +9,9 @@ class Rook : public Chess
 public:
     Rook(QWidget*parent, QColor color);
 
-    bool move_chess(Ceil *a, Ceil *b) override;
-
     void paintEvent(QPaintEvent* event) override;
-};
+
+    bool pathway_rule(Ceil *a, Ceil *b) override;
+ };
 
 #endif // ROOK_H

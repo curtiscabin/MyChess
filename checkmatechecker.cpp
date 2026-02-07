@@ -17,9 +17,10 @@ bool CheckMateChecker::CheckChecker(Ceil*king_ceil, Ceil *from, QWidget *board1)
     for(int i = 0; i < ceils.size(); i++){
         for(int j = 0; j < ceils[0].size(); j++){
             Ceil*ceil = ceils[i][j];
-            if(ceil->getChess() && ceil->getChess()->getColor()!=king_ceil->getChess()->getColor()){
+            Chess*chess = ceil->getChess();
+            if(chess && chess->getColor()!=king_ceil->getChess()->getColor()){
                 qDebug()<<"go to wayCheck in CheckChecker";
-                if(wayCheck.onBoardIsWayFromToClear(ceil, from, board1)){
+                if(chess->possibility_move(ceil, from)){
                     isCheck = true;
                 }
                 if(isCheck) return true;

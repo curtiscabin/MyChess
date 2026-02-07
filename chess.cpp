@@ -8,6 +8,11 @@ Chess::Chess(QWidget *parent, QColor color)
     show();
 }
 
+bool Chess::possibility_move(Ceil *a, Ceil *b)
+{
+    return true;
+}
+
 void Chess::cut_chess(Ceil *b)
 {
     b->getChess()->hide();
@@ -15,7 +20,7 @@ void Chess::cut_chess(Ceil *b)
     setParent(b);
 }
 
-bool Chess::possibility_cutting(Ceil *b)
+bool Chess::possibility_cutting(Ceil* a,Ceil *b)
 {
     Chess* enemy = b->getChess();
 

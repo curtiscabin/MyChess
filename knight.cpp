@@ -11,7 +11,7 @@ bool Knight::move_chess(Ceil *a, Ceil *b)
     {
         qDebug()<<"after first check of knight";
         if(b->getChess()){
-            if(possibility_cutting(b))
+            if(possibility_cutting(a, b))
                 cut_chess(b);
             else
                 return false;

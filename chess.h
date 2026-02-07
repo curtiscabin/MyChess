@@ -16,9 +16,11 @@ public:
 
     virtual bool move_chess(Ceil *a, Ceil *b) = 0;
 
+    virtual bool possibility_move(Ceil *a, Ceil *b);
+
     void cut_chess(Ceil* b);
 
-    bool possibility_cutting(Ceil* b);
+    virtual bool possibility_cutting(Ceil *a, Ceil* b);
 
     QColor getColor();
 

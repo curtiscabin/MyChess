@@ -2,7 +2,7 @@
 
 Pawn::Pawn(QWidget*parent, QColor color) : Chess(parent, color){}
 
-bool Pawn::move_chess(Ceil *a, Ceil *b)
+bool Pawn::possibility_move(Ceil *a, Ceil *b)
 {
     if((b->getRow() - a->getRow() > 2 || b->getRow() - a->getRow() < 0 && color == "#77716A")
         ||
@@ -11,21 +11,28 @@ bool Pawn::move_chess(Ceil *a, Ceil *b)
         a->distToByCol(b) > 1)
         return false;
 
-    //cut maybe
-    if(a->distToByCol(b) == 1 && (b->getRow() - a->getRow() == 1 && color == "#77716A" || b->getRow() - a->getRow() == -1 && color == "#ffffff")){
-        if(b->getChess() && possibility_cutting(b))
-            cut_chess(b);
-        else
-            return false;
-    }
-    //step forward
-    WayChecker wayCheck;
-    if(a->distToByRow(b) == 1 || (a->distToByRow(b) == 2 && firstStep && wayCheck.onBoardIsWayFromToClear(a, b, b->parentWidget()))){
-        if(b->getChess())return false;
+    if(possibility_cutting(a, b))return true;
 
-        setParent(b);
+    WayChecker wayCheck;
+    if((a->distToByRow(b) == 1 && a->distToByCol(b) == 0|| (a->distToByRow(b) == 2 && firstStep && wayCheck.onBoardIsWayFromToClear(a, b, b->parentWidget()))) && !b->getChess()){
+        qDebug()<<"return true";
+        return true;
     }
     else return false;
+}
+
+bool Pawn::move_chess(Ceil *a, Ceil *b)
+{
+    if(!possibility_move(a,b)) return false;
+
+    if(possibility_cutting(a, b)){
+        qDebug()<<"cut_chess";
+        cut_chess(b);
+    }
+    else {
+        qDebug()<<"setParent";
+        setParent(b);
+    }
 
 
     if(firstStep)firstStep = false;
@@ -68,4 +75,14 @@ void Pawn::paintEvent(QPaintEvent* event)
     painter.drawPath(body);
 
     painter.drawRect(-30, 35, 60, 10);
+}
+
+bool Pawn::possibility_cutting(Ceil *a, Ceil *b)
+{
+    if(!b->getChess()) return false;
+
+    if(a->distToByCol(b) == 1 && (b->getRow() - a->getRow() == 1 && color == "#77716A" || b->getRow() - a->getRow() == -1 && color == "#ffffff")){
+        return true;
+    }
+    else return false;
 }

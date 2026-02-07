@@ -11,9 +11,13 @@ class Pawn : public Chess
 public:
     Pawn(QWidget*parent, QColor color);
 
+    bool possibility_move(Ceil *a, Ceil *b) override;
+
     bool move_chess(Ceil *a, Ceil *b) override;
 
     void paintEvent(QPaintEvent* event) override;
+
+    bool possibility_cutting(Ceil *a, Ceil *b) override;
 };
 
 #endif // PAWN_H

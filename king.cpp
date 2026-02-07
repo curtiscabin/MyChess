@@ -14,7 +14,7 @@ bool King::move_chess(Ceil *a, Ceil *b)
     qDebug()<<"after CheckMateChecker";
 
     if(b->getChess()){
-        if(possibility_cutting(b))
+        if(possibility_cutting(a, b))
             cut_chess(b);
         else
             return false;
